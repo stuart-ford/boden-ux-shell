@@ -56,141 +56,22 @@
 
   <!-- ═══════════════════════════════════════════════════════════
        HEADER STYLES — data-component="header-styles"
+       Now Tailwind-based (Figma Make output).
+       Preflight handles resets; tokens kept for footer compatibility.
   ═══════════════════════════════════════════════════════════ -->
-<style id="boden-header-styles">
-  /* ── Design tokens ─────────────────────────────────────────── */
-  :root {
-    --surface-primary:   #ffffff;
-    --surface-secondary: #f7f4ef;
-    --text-primary:      #262525;
-    --text-red:          #cc0000;
-    --font:              'CircularXX', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-
-    /* Desktop */
-    --announcement-h:    32px;
-    --header-h:          80px;
-    --logo-w:            150px;
-    --logo-h:            24px;
-    --icon-size:         32px;
-    --icon-gap:          20px;
-    --nav-gap:           40px;
-    --nav-font:          14px;
-    --nav-tracking:      0.5px;
-
-    /* Mobile */
-    --mob-header-h:      56px;
-    --mob-logo-w:        124px;
-    --mob-logo-h:        20px;
-    --mob-icon-size:     24px;
-    --mob-icon-gap:      16px;
-  }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    background: #e8e4de;
-    font-family: var(--font);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0;
-  }
-
-  .boden-header { background: var(--surface-primary); width: 100%; position: relative; }
-
-  .announcement-bar {
-    background: var(--surface-secondary);
-    height: var(--announcement-h);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    position: relative;
-  }
-  .announcement-bar__text {
-    font-size: 12px;
-    line-height: 22.4px;
-    color: var(--text-primary);
-    white-space: nowrap;
-    font-weight: 400;
-  }
-  .announcement-bar__text strong { font-weight: 700; }
-
-  .store-selector {
-    display: none;
-    position: absolute;
-    top: 0; right: 16px;
-    height: var(--announcement-h);
-    align-items: center;
-    gap: 5px;
-    background: var(--surface-primary);
-    padding: 0 10px;
-  }
-  .store-selector__flag { width: 26px; height: 14px; }
-  .store-selector__label {
-    font-size: 12px; line-height: 22.4px;
-    color: var(--text-primary);
-    text-decoration: underline;
-    white-space: nowrap;
-    cursor: pointer;
-  }
-
-  .main-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    padding: 0 16px;
-    overflow: hidden;
-  }
-
-  .logo-link { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; }
-  .logo-svg { display: block; color: #19975D; }
-
-  .nav-links { display: none; align-items: center; gap: var(--nav-gap); overflow: hidden; flex-shrink: 1; }
-  .nav-links a {
-    font-size: var(--nav-font); font-weight: 700;
-    letter-spacing: var(--nav-tracking); text-transform: uppercase;
-    color: var(--text-primary); text-decoration: none;
-    white-space: nowrap; line-height: 22.4px;
-  }
-  .nav-links a.nav-links__sale { color: var(--text-red); }
-
-  .icon-group { display: flex; align-items: center; flex-shrink: 0; }
-  .icon-btn {
-    background: none; border: none; cursor: pointer; padding: 0;
-    display: flex; align-items: center; justify-content: center;
-    color: var(--text-primary);
-  }
-  .icon-btn svg { display: block; fill: currentColor; }
-
-  .icon-group-left, .icon-group-right { display: flex; align-items: center; gap: var(--mob-icon-gap); }
-
-  .main-header { height: var(--mob-header-h); }
-  .icon-group-left, .icon-group-right { display: flex; }
-  .store-selector { display: none; }
-  .nav-links { display: none; }
-  .icon-group-desktop { display: none; }
-  .logo-svg { width: var(--mob-logo-w); height: var(--mob-logo-h); }
-  .icon-btn svg { width: var(--mob-icon-size); height: var(--mob-icon-size); }
-
-  @media (min-width: 1280px) {
-    .main-header {
-      height: var(--header-h);
-      max-width: 1600px;
-      margin: 0 auto;
-      padding: 10px 16px;
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* ── Shared design tokens (used by footer) ───────────────── */
+    :root {
+      --surface-primary:   #ffffff;
+      --surface-secondary: #f7f4ef;
+      --text-primary:      #262525;
+      --text-red:          #cc0000;
+      --font:              'CircularXX', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     }
-    .store-selector { display: flex; }
-    .nav-links { display: flex; }
-    .icon-group-desktop { display: flex; gap: var(--icon-gap); align-items: center; }
-    .icon-group-left, .icon-group-right { display: none; }
-    .logo-svg { width: var(--logo-w); height: var(--logo-h); }
-    .icon-group-desktop .icon-btn svg { width: var(--icon-size); height: var(--icon-size); }
-    .announcement-bar { position: relative; }
-  }
-</style>
+    /* ── Font override (Tailwind preflight sets font-family on body) */
+    body { font-family: "CircularXX", "CircularStd", "Inter", ui-sans-serif, system-ui, sans-serif; }
+  </style>
 
   <!-- ═══════════════════════════════════════════════════════════
        FOOTER STYLES — data-component="footer-styles"
@@ -463,67 +344,219 @@
 
   <!-- ═══════════════════════════════════════════════════════════
        HEADER — data-component="header"
+       Tailwind-based (Figma Make output). v2.1
   ═══════════════════════════════════════════════════════════ -->
-<header class="boden-header" role="banner" data-name="Header">
-  <div class="announcement-bar" data-name="Announcement Bar">
-    <p class="announcement-bar__text">15% off all new season styles with code <strong>NEW15</strong></p>
-    <div class="store-selector" aria-label="Store selector">
-      <svg class="store-selector__flag" viewBox="0 0 26 14" aria-hidden="true">
-        <rect width="26" height="14" fill="#B22234"/>
-        <rect y="1.08" width="26" height="1.08" fill="white"/>
-        <rect y="3.23" width="26" height="1.08" fill="white"/>
-        <rect y="5.38" width="26" height="1.08" fill="white"/>
-        <rect y="7.54" width="26" height="1.08" fill="white"/>
-        <rect y="9.69" width="26" height="1.08" fill="white"/>
-        <rect y="11.85" width="26" height="1.15" fill="white"/>
-        <rect width="11.4" height="7.54" fill="#3C3B6E"/>
-      </svg>
-      <span class="store-selector__label">USA (USD$)</span>
+<header id="boden-header" class="w-full bg-white relative flex flex-col items-center" role="banner" data-name="Header">
+
+  <!-- ── Announcement Bar ── -->
+  <div class="w-full h-8 bg-[#f7f4ef] flex items-center justify-center relative shrink-0" data-name="Announcement Bar">
+    <p class="text-[#262525] text-[12px] leading-[22.4px] text-center whitespace-nowrap"
+       style="font-feature-settings:'lnum','pnum'">
+      15% off all new season styles with code <strong style="font-weight:700">NEW15</strong>
+    </p>
+    <!-- Country Selector – desktop only -->
+    <div class="hidden md:flex absolute right-4 top-0 h-8 bg-white items-center gap-[5px] px-[10px]" aria-label="Store selector">
+      <div class="relative overflow-hidden shrink-0" style="width:26px;height:14px">
+        <svg width="26" height="14" viewBox="0 0 26 14" fill="none" aria-hidden="true">
+          <rect width="26" height="14" fill="#B22234"/>
+          <rect y="1.08"  width="26" height="1.08" fill="white"/>
+          <rect y="3.23"  width="26" height="1.08" fill="white"/>
+          <rect y="5.38"  width="26" height="1.08" fill="white"/>
+          <rect y="7.54"  width="26" height="1.08" fill="white"/>
+          <rect y="9.69"  width="26" height="1.08" fill="white"/>
+          <rect y="11.85" width="26" height="1.08" fill="white"/>
+          <rect width="10.4" height="7.54" fill="#3C3B6E"/>
+          <circle cx="1.3" cy="1.2" r="0.5" fill="white"/>
+          <circle cx="3.1" cy="1.2" r="0.5" fill="white"/>
+          <circle cx="4.9" cy="1.2" r="0.5" fill="white"/>
+          <circle cx="6.7" cy="1.2" r="0.5" fill="white"/>
+          <circle cx="8.5" cy="1.2" r="0.5" fill="white"/>
+          <circle cx="2.2" cy="2.5" r="0.5" fill="white"/>
+          <circle cx="4.0" cy="2.5" r="0.5" fill="white"/>
+          <circle cx="5.8" cy="2.5" r="0.5" fill="white"/>
+          <circle cx="7.6" cy="2.5" r="0.5" fill="white"/>
+          <circle cx="1.3" cy="3.8" r="0.5" fill="white"/>
+          <circle cx="3.1" cy="3.8" r="0.5" fill="white"/>
+          <circle cx="4.9" cy="3.8" r="0.5" fill="white"/>
+          <circle cx="6.7" cy="3.8" r="0.5" fill="white"/>
+          <circle cx="8.5" cy="3.8" r="0.5" fill="white"/>
+          <circle cx="2.2" cy="5.1" r="0.5" fill="white"/>
+          <circle cx="4.0" cy="5.1" r="0.5" fill="white"/>
+          <circle cx="5.8" cy="5.1" r="0.5" fill="white"/>
+          <circle cx="7.6" cy="5.1" r="0.5" fill="white"/>
+          <circle cx="1.3" cy="6.4" r="0.5" fill="white"/>
+          <circle cx="3.1" cy="6.4" r="0.5" fill="white"/>
+          <circle cx="4.9" cy="6.4" r="0.5" fill="white"/>
+          <circle cx="6.7" cy="6.4" r="0.5" fill="white"/>
+          <circle cx="8.5" cy="6.4" r="0.5" fill="white"/>
+        </svg>
+      </div>
+      <p class="text-[#262525] text-[12px] leading-[22.4px] underline whitespace-nowrap"
+         style="font-feature-settings:'lnum','pnum';text-decoration-skip-ink:none">
+        USA (USD$)
+      </p>
     </div>
   </div>
-  <nav class="main-header" aria-label="Main navigation" data-name="Main Nav">
-    <!-- Mobile left: menu + search -->
-    <div class="icon-group-left" aria-label="Menu and search">
-      <button class="icon-btn" aria-label="Open menu"><svg width="24" height="24" aria-hidden="true"><use href="#icon-menu"/></svg></button>
-      <button class="icon-btn" aria-label="Search"><svg width="24" height="24" aria-hidden="true"><use href="#icon-search"/></svg></button>
+
+  <!-- ── Desktop Main Header ── -->
+  <div class="hidden md:flex w-full h-20 items-center justify-between px-4 shrink-0" data-name="Main Nav Desktop">
+
+    <!-- BODEN Logo (150×24px) -->
+    <div class="flex items-center p-[10px] h-20 overflow-hidden shrink-0" data-name="Logo">
+      <a href="/" aria-label="Boden home">
+        <div class="relative overflow-hidden shrink-0" style="width:150px;height:24.038px">
+          <!-- B -->
+          <svg class="absolute" preserveAspectRatio="none" style="top:0;left:0;width:13.37%;height:97.67%" fill="none" viewBox="0 0 20.0529 23.2974" aria-hidden="true">
+            <path d="M15.9113 11.3372V11.1512C17.9511 10.5017 18.9696 8.49406 18.9696 6.45395C18.9696 1.08058 14.3644 0 9.85378 0H0V23.2974H11.5246C15.6013 23.2974 20.0529 21.6588 20.0529 16.87C20.0529 14.0889 18.447 12.2348 15.9142 11.3402L15.9113 11.3372ZM7.44494 5.21985H8.91209C9.80064 5.21985 11.6515 5.21985 11.6515 7.23044C11.6515 9.36502 9.52906 9.36502 8.62279 9.36502H7.4479V5.21985H7.44494ZM8.80582 18.1396H7.44494V13.4718H8.80877C10.0427 13.4718 12.608 13.4718 12.608 15.7895C12.608 18.1071 10.1342 18.1396 8.80582 18.1396Z" fill="#19975D"/>
+          </svg>
+          <!-- O -->
+          <svg class="absolute" preserveAspectRatio="none" style="top:0;left:19.23%;width:17.17%;height:100%" fill="none" viewBox="0 0 25.7651 24.0385" aria-hidden="true">
+            <path d="M12.8825 0C5.80659 0 0 4.75927 0 12.0812C0 19.4032 5.77707 24.0385 12.8825 24.0385C19.988 24.0385 25.7651 19.5567 25.7651 12.0812C25.7651 4.60575 19.9585 0 12.8825 0ZM12.8825 17.0885C10.0811 17.0885 8.12391 15.0809 8.12391 12.2052C8.12391 9.32959 10.1254 7.25996 12.8825 7.25996C15.6397 7.25996 17.6412 9.33845 17.6412 12.2052C17.6412 15.072 15.684 17.0885 12.8825 17.0885Z" fill="#19975D"/>
+          </svg>
+          <!-- D -->
+          <svg class="absolute" preserveAspectRatio="none" style="top:0;left:44.06%;width:14.95%;height:97.67%" fill="none" viewBox="0 0 22.4293 23.2974" aria-hidden="true">
+            <path d="M8.61984 0.0029524H0V23.2974H10.7217C17.5496 23.2974 22.4293 18.9101 22.4293 11.9897C22.4293 3.43069 16.4367 0 8.61984 0V0.0029524ZM8.99179 16.7195H8.06191V6.89091H8.99179C12.5106 6.89091 14.3703 8.64464 14.3703 11.9602C14.3703 14.9392 12.36 16.7195 8.99179 16.7195V16.7195Z" fill="#19975D"/>
+          </svg>
+          <!-- E -->
+          <svg class="absolute" preserveAspectRatio="none" style="top:0;left:65.7%;width:10.6%;height:97.67%" fill="none" viewBox="0 0 15.9083 23.2974" aria-hidden="true">
+            <path d="M8.52538 14.3605H15.0434V8.87197H8.52538V6.36243H15.6633V0H0V23.2974H15.9083V16.932H8.52538V14.3605Z" fill="#19975D"/>
+          </svg>
+          <!-- N -->
+          <svg class="absolute" preserveAspectRatio="none" style="top:0;left:84.12%;width:15.57%;height:97.67%" fill="none" viewBox="0 0 23.3533 23.2945" aria-hidden="true">
+            <path d="M15.2589 0V11.8391L8.12391 0H0V23.2945H8.09144L8.09439 11.5055L15.2589 23.2945H23.3533V0H15.2589Z" fill="#19975D"/>
+          </svg>
+        </div>
+      </a>
     </div>
-    <!-- Logo -->
-    <a href="/" class="logo-link" aria-label="Boden home" data-name="Logo">
-      <svg class="logo-svg" viewBox="0 0 300 49" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <g clip-path="url(#boden-logo-clip)">
-          <path d="M31.8226 22.6714V22.2994C35.9022 21.0005 37.9391 16.9858 37.9391 12.9061C37.9391 2.16086 28.7289 0 19.7076 0H0V46.5885H23.0492C31.2026 46.5885 40.1059 43.3118 40.1059 33.7355C40.1059 28.1739 36.8941 24.4662 31.8285 22.6773L31.8226 22.6714ZM14.8899 10.4383H17.8242C19.6013 10.4383 23.3031 10.4383 23.3031 14.4589C23.3031 18.7275 19.0581 18.7275 17.2456 18.7275H14.8958V10.4383H14.8899ZM17.6116 36.2742H14.8899V26.94H17.6175C20.0854 26.94 25.216 26.94 25.216 31.5746C25.216 36.2092 20.2684 36.2742 17.6116 36.2742Z" fill="currentColor"/>
-          <path d="M83.4496 0C69.2977 0 57.6846 9.51725 57.6846 24.1592C57.6846 38.8011 69.2387 48.0704 83.4496 48.0704C97.6606 48.0704 109.215 39.1081 109.215 24.1592C109.215 9.21024 97.6015 0 83.4496 0ZM83.4496 34.1723C77.8467 34.1723 73.9324 30.1576 73.9324 24.4071C73.9324 18.6566 77.9353 14.5179 83.4496 14.5179C88.964 14.5179 92.9669 18.6743 92.9669 24.4071C92.9669 30.1399 89.0525 34.1723 83.4496 34.1723Z" fill="currentColor"/>
-          <path d="M214.139 28.7171H227.175V17.7415H214.139V12.7231H228.415V0H197.089V46.5885H228.905V33.8594H214.139V28.7171Z" fill="currentColor"/>
-          <path d="M282.887 0V23.675L268.617 0H252.37V46.5825H268.553L268.558 23.0079L282.887 46.5825H299.076V0H282.887Z" fill="currentColor"/>
-          <path d="M149.433 0.00590399H132.194V46.5885H153.637C167.293 46.5885 177.052 37.8151 177.052 23.9761C177.052 6.86045 165.067 0 149.433 0V0.00590399ZM150.177 33.4344H148.317V13.7799H150.177C157.215 13.7799 160.934 17.2869 160.934 23.9171C160.934 29.8742 156.914 33.4344 150.177 33.4344Z" fill="currentColor"/>
-        </g>
-        <defs><clipPath id="boden-logo-clip"><rect width="300" height="48.0704" fill="white"/></clipPath></defs>
-      </svg>
-    </a>
-    <!-- Desktop nav links -->
-    <div class="nav-links" role="list" aria-label="Shop categories" data-name="Nav Links">
-      <a href="#" class="nav-links__sale" role="listitem" data-dead-end>Sale</a>
-      <a href="#" role="listitem" data-dead-end>New</a>
-      <a href="#" role="listitem" data-dead-end>Shop by edit</a>
-      <a href="#" role="listitem" data-dead-end>Dresses</a>
-      <a href="#" role="listitem" data-dead-end>Women</a>
-      <a href="#" role="listitem" data-dead-end>Girls</a>
-      <a href="#" role="listitem" data-dead-end>Boys</a>
-      <a href="#" role="listitem" data-dead-end>Baby</a>
+
+    <!-- Nav links -->
+    <nav class="flex items-center gap-10 h-20 shrink-0 font-bold text-[14px] uppercase tracking-[0.5px] whitespace-nowrap"
+         style="font-feature-settings:'lnum','pnum'" aria-label="Shop categories" data-name="Nav Links">
+      <a href="#" class="hover:opacity-70 transition-opacity" style="color:#cc0000" data-dead-end>Sale</a>
+      <a href="#" class="text-[#262525] hover:opacity-70 transition-opacity" data-dead-end>New Season</a>
+      <a href="#" class="text-[#262525] hover:opacity-70 transition-opacity" data-dead-end>Dresses</a>
+      <a href="#" class="text-[#262525] hover:opacity-70 transition-opacity" data-dead-end>Women</a>
+      <a href="#" class="text-[#262525] hover:opacity-70 transition-opacity" data-dead-end>Girls</a>
+      <a href="#" class="text-[#262525] hover:opacity-70 transition-opacity" data-dead-end>Boys</a>
+      <a href="#" class="text-[#262525] hover:opacity-70 transition-opacity" data-dead-end>Baby</a>
+    </nav>
+
+    <!-- Icons: Search · Account · Wishlist · Bag -->
+    <div class="flex items-center gap-5 h-20 shrink-0" aria-label="Account and bag" data-name="Header Icons Desktop">
+      <!-- Search -->
+      <button class="relative overflow-hidden shrink-0 w-8 h-8 p-0 bg-transparent border-0 cursor-pointer hover:opacity-70 transition-opacity" aria-label="Search">
+        <div class="absolute" style="left:4px;top:4px;width:23.707px;height:23.707px">
+          <svg class="absolute inset-0 w-full h-full" fill="none" viewBox="0 0 23.707 23.707" aria-hidden="true">
+            <path d="M11 0C17.0751 0 22 4.92487 22 11C22 13.6775 21.0422 16.1306 19.4521 18.0381L23.707 22.293L22.293 23.707L18.0381 19.4521C16.1306 21.0422 13.6775 22 11 22C4.92487 22 0 17.0751 0 11C0 4.92487 4.92487 0 11 0ZM11 2C6.02944 2 2 6.02944 2 11C2 15.9706 6.02944 20 11 20C15.9706 20 20 15.9706 20 11C20 6.02944 15.9706 2 11 2Z" fill="#262525"/>
+          </svg>
+        </div>
+      </button>
+      <!-- Account -->
+      <button class="relative overflow-hidden shrink-0 w-8 h-8 p-0 bg-transparent border-0 cursor-pointer hover:opacity-70 transition-opacity" aria-label="Account">
+        <div class="absolute inset-[12.5%]">
+          <svg class="absolute inset-0 w-full h-full" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 12C18.6274 12 24 16.7098 24 24H0C0 16.7098 5.37258 12 12 12ZM12 14C7.04088 14 3.02212 17.0522 2.16992 22H21.8301C20.9779 17.0522 16.9591 14 12 14ZM12 0C15.3137 0 18 2.68629 18 6C18 9.31371 15.3137 12 12 12C8.68629 12 6 9.31371 6 6C6 2.68629 8.68629 0 12 0ZM12 2C9.79086 2 8 3.79086 8 6C8 8.20914 9.79086 10 12 10C14.2091 10 16 8.20914 16 6C16 3.79086 14.2091 2 12 2Z" fill="#262525"/>
+          </svg>
+        </div>
+      </button>
+      <!-- Wishlist -->
+      <button class="relative overflow-hidden shrink-0 w-8 h-8 p-0 bg-transparent border-0 cursor-pointer hover:opacity-70 transition-opacity" aria-label="Wishlist">
+        <div class="absolute" style="top:calc(50% + 0.5px);left:4px;width:24px;height:21px;transform:translateY(-50%)">
+          <svg class="absolute inset-0 w-full h-full" fill="none" viewBox="0 0 24 21" aria-hidden="true">
+            <path d="M13.9268 2.56152C16.0023 0.479485 19.3658 0.479571 21.4414 2.56152C23.5189 4.64576 23.5189 8.02709 21.4414 10.1113L12 19.583L2.55859 10.1113C0.481118 8.02709 0.481118 4.64576 2.55859 2.56152C4.63422 0.479571 7.99767 0.479485 10.0732 2.56152L11.292 3.78418L12 4.49414L12.708 3.78418L13.9268 2.56152Z" stroke="#262525" stroke-width="2" fill="none"/>
+          </svg>
+        </div>
+      </button>
+      <!-- Bag -->
+      <button class="relative overflow-hidden shrink-0 w-8 h-8 p-0 bg-transparent border-0 cursor-pointer hover:opacity-70 transition-opacity" aria-label="Shopping bag, 0 items" id="header-bag-btn">
+        <div class="absolute" style="left:5px;top:5px;width:22px;height:22px">
+          <div class="absolute" style="inset:-4.55%">
+            <svg class="block w-full h-full" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M19 6H23V23H1V6H5M19 6V1H5V6M19 6H5" stroke="#262525" stroke-width="2"/>
+            </svg>
+          </div>
+        </div>
+      </button>
     </div>
-    <!-- Desktop icon group -->
-    <div class="icon-group icon-group-desktop" aria-label="Account and bag" data-name="Header Icons Desktop">
-      <button class="icon-btn" aria-label="Search"><svg width="32" height="32" aria-hidden="true"><use href="#icon-search"/></svg></button>
-      <button class="icon-btn" aria-label="Account"><svg width="32" height="32" aria-hidden="true"><use href="#icon-accountloggedout"/></svg></button>
-      <button class="icon-btn" aria-label="Wishlist"><svg width="32" height="32" aria-hidden="true"><use href="#icon-wishlistempty"/></svg></button>
-      <button class="icon-btn" aria-label="Shopping bag, 0 items" id="header-bag-btn"><svg width="32" height="32" aria-hidden="true"><use href="#icon-bag"/></svg></button>
+  </div>
+
+  <!-- ── Mobile Main Header ── -->
+  <div class="flex md:hidden w-full h-14 items-center justify-between px-4 shrink-0" data-name="Main Nav Mobile">
+
+    <!-- Left: Menu + Search -->
+    <div class="flex items-center gap-4 shrink-0" aria-label="Menu and search">
+      <!-- Hamburger -->
+      <button class="relative overflow-hidden shrink-0 w-6 h-6 p-0 bg-transparent border-0 cursor-pointer hover:opacity-70 transition-opacity" aria-label="Open menu">
+        <div class="absolute" style="left:3px;top:7px;width:18px;height:10.5px">
+          <div class="absolute" style="inset:-7.14% 0">
+            <svg class="block w-full h-full" fill="none" viewBox="0 0 18 12" aria-hidden="true">
+              <path d="M18 6H0M18 0.75H0M18 11.25H0" stroke="#262525" stroke-width="1.5"/>
+            </svg>
+          </div>
+        </div>
+      </button>
+      <!-- Search -->
+      <button class="relative overflow-hidden shrink-0 w-6 h-6 p-0 bg-transparent border-0 cursor-pointer hover:opacity-70 transition-opacity" aria-label="Search">
+        <div class="absolute" style="left:3px;top:3px;width:17.28px;height:18.28px">
+          <svg class="absolute inset-0 w-full h-full" fill="none" viewBox="0 0 17.2803 18.2803" aria-hidden="true">
+            <path d="M8.25 0C12.8063 0 16.5 3.69365 16.5 8.25C16.5 10.5128 15.5885 12.5622 14.1133 14.0527L17.2803 17.2197L16.2197 18.2803L12.96 15.0205C11.6241 15.9515 10.0017 16.5 8.25 16.5C3.69365 16.5 0 12.8063 0 8.25C0 3.69365 3.69365 0 8.25 0ZM8.25 1.5C4.52208 1.5 1.5 4.52208 1.5 8.25C1.5 11.9779 4.52208 15 8.25 15C11.9779 15 15 11.9779 15 8.25C15 4.52208 11.9779 1.5 8.25 1.5Z" fill="#262525"/>
+          </svg>
+        </div>
+      </button>
     </div>
-    <!-- Mobile right: wishlist + bag -->
-    <div class="icon-group-right" aria-label="Wishlist and bag" data-name="Header Icons Mobile">
-      <button class="icon-btn" aria-label="Wishlist"><svg width="24" height="24" aria-hidden="true"><use href="#icon-wishlistempty"/></svg></button>
-      <button class="icon-btn" aria-label="Shopping bag, 0 items"><svg width="24" height="24" aria-hidden="true"><use href="#icon-bag"/></svg></button>
+
+    <!-- Mobile Logo (124×19.872px) -->
+    <div class="flex items-center overflow-hidden shrink-0" style="height:46.293px" data-name="Logo">
+      <a href="/" aria-label="Boden home">
+        <div class="relative overflow-hidden shrink-0" style="width:124px;height:19.872px">
+          <!-- B -->
+          <svg class="absolute" preserveAspectRatio="none" style="top:0;left:0;width:13.37%;height:97%" fill="none" viewBox="0 0 16.5771 19.2592" aria-hidden="true">
+            <path d="M13.1533 9.37211V9.21835C14.8396 8.6814 15.6815 7.02176 15.6815 5.33527C15.6815 0.893279 11.8746 0 8.14579 0H0V19.2592H9.52701C12.8971 19.2592 16.5771 17.9046 16.5771 13.9459C16.5771 11.6468 15.2496 10.1141 13.1558 9.37455L13.1533 9.37211ZM6.15449 4.31508H7.36733C8.10186 4.31508 9.63194 4.31508 9.63194 5.97716C9.63194 7.74175 7.87735 7.74175 7.12817 7.74175H6.15693V4.31508H6.15449ZM7.27947 14.9954H6.15449V11.1367H7.28192C8.30197 11.1367 10.4226 11.1367 10.4226 13.0526C10.4226 14.9685 8.37762 14.9954 7.27947 14.9954Z" fill="#19975D"/>
+          </svg>
+          <!-- O -->
+          <svg class="absolute" preserveAspectRatio="none" style="top:0;left:19.23%;width:17.17%;height:100%" fill="none" viewBox="0 0 21.2991 19.8718" aria-hidden="true">
+            <path d="M10.6496 0C4.80011 0 0 3.93433 0 9.98715C0 16.04 4.77571 19.8718 10.6496 19.8718C16.5234 19.8718 21.2991 16.1669 21.2991 9.98715C21.2991 3.80742 16.499 0 10.6496 0ZM10.6496 14.1265C8.3337 14.1265 6.71576 12.4669 6.71576 10.0897C6.71576 7.71246 8.3703 6.00157 10.6496 6.00157C12.9288 6.00157 14.5834 7.71978 14.5834 10.0897C14.5834 12.4595 12.9654 14.1265 10.6496 14.1265Z" fill="#19975D"/>
+          </svg>
+          <!-- D -->
+          <svg class="absolute" preserveAspectRatio="none" style="top:0;left:44.06%;width:14.95%;height:97%" fill="none" viewBox="0 0 18.5416 19.2592" aria-hidden="true">
+            <path d="M7.12573 0.00244065H0V19.2592H8.86324C14.5077 19.2592 18.5416 15.6324 18.5416 9.91149C18.5416 2.83604 13.5877 0 7.12573 0V0.00244065ZM7.43322 13.8214H6.66451V5.69648H7.43322C10.3421 5.69648 11.8795 7.14623 11.8795 9.88708C11.8795 12.3497 10.2176 13.8214 7.43322 13.8214V13.8214Z" fill="#19975D"/>
+          </svg>
+          <!-- E -->
+          <svg class="absolute" preserveAspectRatio="none" style="top:0;left:65.7%;width:10.6%;height:97%" fill="none" viewBox="0 0 13.1509 19.2592" aria-hidden="true">
+            <path d="M7.04765 11.8713H12.4359V7.33416H7.04765V5.25961H12.9483V0H0V19.2592H13.1509V13.9971H7.04765V11.8713Z" fill="#19975D"/>
+          </svg>
+          <!-- N -->
+          <svg class="absolute" preserveAspectRatio="none" style="top:0;left:84.12%;width:15.57%;height:97%" fill="none" viewBox="0 0 19.3054 19.2567" aria-hidden="true">
+            <path d="M12.614 0V9.78701L6.71577 0H0V19.2567H6.68892L6.69136 9.51122L12.614 19.2567H19.3054V0H12.614Z" fill="#19975D"/>
+          </svg>
+        </div>
+      </a>
     </div>
-  </nav>
+
+    <!-- Right: Wishlist + Bag -->
+    <div class="flex items-center gap-4 shrink-0" aria-label="Wishlist and bag" data-name="Header Icons Mobile">
+      <!-- Wishlist -->
+      <button class="relative overflow-hidden shrink-0 w-6 h-6 p-0 bg-transparent border-0 cursor-pointer hover:opacity-70 transition-opacity" aria-label="Wishlist">
+        <div class="absolute" style="top:calc(50% + 0.88px);left:3px;width:18px;height:15.75px;transform:translateY(-50%)">
+          <svg class="absolute inset-0 w-full h-full" fill="none" viewBox="0 0 18 15.75" aria-hidden="true">
+            <path d="M10.4453 1.9209C12.002 0.359655 14.5244 0.359638 16.0811 1.9209C17.6392 3.48408 17.6392 6.01983 16.0811 7.58301L9 14.6875L1.91895 7.58301C0.360839 6.01983 0.360839 3.48408 1.91895 1.9209C3.47559 0.359638 5.99803 0.359655 7.55469 1.9209L8.46875 2.83789L9 3.37109L9.53125 2.83789L10.4453 1.9209Z" stroke="#262525" stroke-width="1.5" fill="none"/>
+          </svg>
+        </div>
+      </button>
+      <!-- Bag -->
+      <button class="relative overflow-hidden shrink-0 w-6 h-6 p-0 bg-transparent border-0 cursor-pointer hover:opacity-70 transition-opacity" aria-label="Shopping bag, 0 items">
+        <div class="absolute" style="left:4px;top:4px;width:16.5px;height:16.5px">
+          <div class="absolute" style="inset:-4.55%">
+            <svg class="block w-full h-full" fill="none" viewBox="0 0 18 18" aria-hidden="true">
+              <path d="M14.25 4.5H17.25V17.25H0.75V4.5H3.75M14.25 4.5V0.75H3.75V4.5M14.25 4.5H3.75" stroke="#262525" stroke-width="1.5"/>
+            </svg>
+          </div>
+        </div>
+      </button>
+    </div>
+
+  </div>
+
 </header>
 
   <!-- ================================================================
